@@ -16,4 +16,4 @@ The sequence of these numbers is sometimes also called ice hail sequence (becaus
 
 ## Live preview
 
-https://jsfiddle.net/marekmensa/r5w10hfL/1/
+https://marekmensa.com/collatz-conjecture/

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Collatz conjecture</title>
+  </head>
+  <body>
+    <h1>Collatz conjecture</h1>
+    <p>
+      The problem can be summarized as follows:
+      <br />
+      <br />
+      <i>
+        "Take any positive integer n. <strong>If n is an even number</strong>,
+        divide it by 2 to get n / 2. <strong>If n is an odd number</strong>,
+        multiply it by 3, add 1 to get 3n + 1. Repeat this process indefinitely.
+        The assumption is that it doesn't matter what starting number n is
+        chosen - the resulting sequence always ends up with 1."
+      </i>
+      <br />
+      <br />
+      The sequence of these numbers is sometimes also called ice hail sequence
+      (because the value of numbers in the sequence often drops and increases
+      many times, similarly as hail changes their height when they are formed in
+      the clouds).
+    </p>
+    <p style="color: green;">
+      • - green indicates that number is even, so it will be processed by n / 2
+      in next step
+    </p>
+    <p style="color: red;">
+      • - red indicates that number is odd, so it will be processed by 3n + 1
+    </p>
+    <form onsubmit="return false">
+      <input type="text" id="number" placeholder="Any number" />
+      <input onclick="processNumber()" type="submit" value="Process number" />
+    </form>
+    <br />
+    <hr />
+    <div id="container"></div>
+  </body>
+</html>
+<script>
+  function isOdd(num) {
+    return num % 2;
+  }
+
+  function processNumber() {
+    resetProgress();
+    let n = document.getElementById('number').value;
+    do {
+      if (isOdd(n)) n = processOdd(n);
+      else n = processEven(n);
+      printProgress(n);
+    } while (n !== 1);
+  }
+
+  function processEven(n) {
+    return n / 2;
+  }
+
+  function processOdd(n) {
+    return 3 * n + 1;
+  }
+
+  function printProgress(n) {
+    const p = document.createElement('p');
+    p.style.cssText = `color: ${isOdd(n) ? 'red' : 'green'}`;
+    p.innerHTML = n;
+    document.getElementById('container').appendChild(p);
+  }
+
+  function resetProgress() {
+    document.getElementById('container').innerHTML = '';
+  }
+</script>
+<style>
+  body {
+    width: 50%;
+    margin: 0 auto;
+  }
+  body div {
+    width: 100%;
+  }
+</style>
